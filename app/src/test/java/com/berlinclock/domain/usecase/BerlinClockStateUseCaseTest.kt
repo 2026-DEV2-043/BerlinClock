@@ -122,4 +122,16 @@ class BerlinClockStateUseCaseTest {
 
         Assert.assertEquals(TOP_MINUTE_LIGHT_COUNT,  berlinClockState.minuteState.topMinuteLightState.count { it != LightColor.OFF })
     }
+
+    @Test
+    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with some top minute lights On`() {
+        val formattedDate = "15:30:02"
+        val hours = 15
+        val minutes = 30
+        val seconds = 2
+
+        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+
+        Assert.assertEquals( true,  berlinClockState.minuteState.topMinuteLightState.any { it != LightColor.OFF })
+    }
 }
