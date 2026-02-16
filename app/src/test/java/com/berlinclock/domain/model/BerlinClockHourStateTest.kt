@@ -70,4 +70,14 @@ class BerlinClockHourStateTest {
 
         Assert.assertEquals(true, bottomHourLightState.all {  it == LightColor.RED })
     }
+
+    @Test
+    fun `check bottomHourLightState some bottom hour lights are On when hour divided by 5 gives remainder less than 4`() {
+        val hours = 13
+
+        berlinClockHourState.updateHourLightState(hours)
+        val bottomHourLightState = berlinClockHourState.bottomHourLightState
+
+        Assert.assertEquals(true, bottomHourLightState.any {  it == LightColor.RED })
+    }
 }
