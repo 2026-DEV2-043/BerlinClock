@@ -14,10 +14,13 @@ class BerlinClockStateUseCase {
         val berlinClockHourState = BerlinClockHourState()
         berlinClockHourState.updateHourLightState(hours)
 
+        val berlinClockMinuteState = BerlinClockMinuteState()
+        berlinClockMinuteState.updateMinuteLightState(minutes)
+
         return BerlinClockState (
             berlinClockSecondState,
             berlinClockHourState,
-            BerlinClockMinuteState(),
+            berlinClockMinuteState,
             formattedTime
         )
     }

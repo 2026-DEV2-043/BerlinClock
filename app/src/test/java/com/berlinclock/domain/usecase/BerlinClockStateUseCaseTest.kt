@@ -1,6 +1,7 @@
 package com.berlinclock.domain.usecase
 
 import com.berlinclock.constants.LightColor
+import com.berlinclock.constants.TOP_MINUTE_LIGHT_COUNT
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -108,5 +109,17 @@ class BerlinClockStateUseCaseTest {
         val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
 
         Assert.assertEquals( true,  berlinClockState.minuteState.topMinuteLightState.all{ it == LightColor.OFF })
+    }
+
+    @Test
+    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all top minute lights On`() {
+        val formattedDate = "15:55:02"
+        val hours = 15
+        val minutes = 55
+        val seconds = 2
+
+        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+
+        Assert.assertEquals(TOP_MINUTE_LIGHT_COUNT,  berlinClockState.minuteState.topMinuteLightState.count { it != LightColor.OFF })
     }
 }
