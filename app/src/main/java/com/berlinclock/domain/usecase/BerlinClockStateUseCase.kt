@@ -7,8 +7,12 @@ import com.berlinclock.domain.model.BerlinClockState
 
 class BerlinClockStateUseCase {
     fun getBerlinClockState(formattedTime: String, hours: Int, minutes: Int, seconds: Int): BerlinClockState {
+
+        val berlinClockSecondState = BerlinClockSecondState()
+        berlinClockSecondState.updateSecondLightState(seconds)
+
         return BerlinClockState (
-            BerlinClockSecondState(),
+            berlinClockSecondState,
             BerlinClockHourState(),
             BerlinClockMinuteState(),
             formattedTime
