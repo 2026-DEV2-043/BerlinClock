@@ -7,4 +7,8 @@ class BerlinClockSecondState {
 
     val secondLightState: LightColor
         get() = _secondLightState
+
+    fun updateSecondLightState(second: Int) {
+        _secondLightState = LightColor.OFF
+    }
 }
