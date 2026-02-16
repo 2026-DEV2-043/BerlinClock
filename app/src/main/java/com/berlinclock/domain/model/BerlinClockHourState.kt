@@ -1,6 +1,7 @@
 package com.berlinclock.domain.model
 
 import com.berlinclock.constants.HOUR_LIGHT_COUNT
+import com.berlinclock.constants.HOUR_LIGHT_VALUE
 import com.berlinclock.constants.LightColor
 
 class BerlinClockHourState {
@@ -10,6 +11,7 @@ class BerlinClockHourState {
         get() = _topHourLightState
 
     fun updateHourLightState(hours: Int) {
-        _topHourLightState.forEach { _ -> LightColor.OFF }
+        val topHourOnLightCount = hours / HOUR_LIGHT_VALUE
+        (0..< topHourOnLightCount).forEach { index -> _topHourLightState[index] = LightColor.RED }
     }
 }
