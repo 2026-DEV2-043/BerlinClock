@@ -18,5 +18,8 @@ class BerlinClockHourState {
     fun updateHourLightState(hours: Int) {
         val topHourOnLightCount = hours / HOUR_LIGHT_VALUE
         (0..< topHourOnLightCount).forEach { index -> _topHourLightState[index] = LightColor.RED }
+
+        val bottomHourOnLightCount = hours % HOUR_LIGHT_VALUE
+        (0..< bottomHourOnLightCount).forEach { index -> _bottomHourLightState[index] = LightColor.RED }
     }
 }
