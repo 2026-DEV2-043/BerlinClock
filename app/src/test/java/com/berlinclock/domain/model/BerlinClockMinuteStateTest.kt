@@ -39,4 +39,14 @@ class BerlinClockMinuteStateTest {
 
         Assert.assertEquals(true, topMinuteLightState.any {  it != LightColor.OFF })
     }
+
+    @Test
+    fun `check topMinuteLightState some top minute lights are On when minute is greater than 5`() {
+        val minutes = 10
+
+        berlinClockMinuteState.updateMinuteLightState(minutes)
+        val topMinuteLightState = berlinClockMinuteState.topMinuteLightState
+
+        Assert.assertEquals(true, topMinuteLightState.any {  it != LightColor.OFF })
+    }
 }
