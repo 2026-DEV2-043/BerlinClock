@@ -86,4 +86,14 @@ class BerlinClockMinuteStateTest {
 
         Assert.assertEquals(true, bottomMinuteLightState.all {  it == LightColor.OFF })
     }
+
+    @Test
+    fun `check bottomMinuteLightState all bottom minute lights are Off when minute is divisible by 5`() {
+        val minutes = 20
+
+        berlinClockMinuteState.updateMinuteLightState(minutes)
+        val bottomMinuteLightState = berlinClockMinuteState.bottomMinuteLightState
+
+        Assert.assertEquals(true, bottomMinuteLightState.all {  it == LightColor.OFF })
+    }
 }
