@@ -59,4 +59,14 @@ class BerlinClockMinuteStateTest {
 
         Assert.assertEquals(true, topMinuteLightState.any {  it == LightColor.RED })
     }
+
+    @Test
+    fun `check topMinuteLightState top minute lights would contain two red color lights when minute is in between 30 to 45`() {
+        val minutes = 35
+
+        berlinClockMinuteState.updateMinuteLightState(minutes)
+        val topMinuteLightState = berlinClockMinuteState.topMinuteLightState
+
+        Assert.assertEquals(2, topMinuteLightState.count { it == LightColor.RED })
+    }
 }
