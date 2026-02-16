@@ -10,6 +10,11 @@ class BerlinClockHourState {
     val topHourLightState: List<LightColor>
         get() = _topHourLightState
 
+    private val _bottomHourLightState = MutableList(HOUR_LIGHT_COUNT) { LightColor.OFF }
+
+    val bottomHourLightState: List<LightColor>
+        get() = _bottomHourLightState
+
     fun updateHourLightState(hours: Int) {
         val topHourOnLightCount = hours / HOUR_LIGHT_VALUE
         (0..< topHourOnLightCount).forEach { index -> _topHourLightState[index] = LightColor.RED }
