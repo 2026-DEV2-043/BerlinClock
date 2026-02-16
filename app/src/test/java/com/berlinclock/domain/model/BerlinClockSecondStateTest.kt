@@ -24,4 +24,13 @@ class BerlinClockSecondStateTest {
         berlinClockSecondState.updateSecondLightState(seconds)
         Assert.assertTrue(berlinClockSecondState.secondLightState == LightColor.OFF)
     }
+
+    @Test
+    fun `check secondLightState is On for even seconds`() {
+        val seconds = 10
+
+        berlinClockSecondState.updateSecondLightState(seconds)
+
+        Assert.assertTrue(berlinClockSecondState.secondLightState == LightColor.YELLOW)
+    }
 }

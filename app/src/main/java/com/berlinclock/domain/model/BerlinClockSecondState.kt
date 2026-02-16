@@ -9,6 +9,6 @@ class BerlinClockSecondState {
         get() = _secondLightState
 
     fun updateSecondLightState(second: Int) {
-        _secondLightState = LightColor.OFF
+        _secondLightState =  if (second % 2 == 0) LightColor.YELLOW else LightColor.OFF
     }
 }
