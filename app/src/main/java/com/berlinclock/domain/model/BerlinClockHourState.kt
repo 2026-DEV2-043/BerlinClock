@@ -8,4 +8,8 @@ class BerlinClockHourState {
 
     val topHourLightState: List<LightColor>
         get() = _topHourLightState
+
+    fun updateHourLightState(hours: Int) {
+        _topHourLightState.forEach { _ -> LightColor.OFF }
+    }
 }

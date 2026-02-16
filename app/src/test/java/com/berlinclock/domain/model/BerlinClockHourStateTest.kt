@@ -19,4 +19,15 @@ class BerlinClockHourStateTest {
 
         Assert.assertEquals(true, topHourLightState.all {  it == LightColor.OFF })
     }
+
+    @Test
+    fun `check topHourLightState all top hour lights are Off when hour is in between 00 to 05`() {
+        val hours = 4
+
+        berlinClockHourState.updateHourLightState(hours)
+
+        val topHourLightState = berlinClockHourState.topHourLightState
+
+        Assert.assertEquals(true, topHourLightState.all {  it == LightColor.OFF })
+    }
 }
