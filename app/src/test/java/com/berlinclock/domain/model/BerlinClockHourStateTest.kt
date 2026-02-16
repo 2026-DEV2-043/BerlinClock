@@ -17,8 +17,6 @@ class BerlinClockHourStateTest {
     fun `check topHourLightState all top hour lights are initially Off`() {
         val topHourLightState = berlinClockHourState.topHourLightState
 
-        topHourLightState.forEach {
-            Assert.assertEquals(LightColor.OFF, it)
-        }
+        Assert.assertEquals(true, topHourLightState.all {  it == LightColor.OFF })
     }
 }
