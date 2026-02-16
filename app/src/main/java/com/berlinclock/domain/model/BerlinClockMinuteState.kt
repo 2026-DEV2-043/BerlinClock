@@ -1,5 +1,6 @@
 package com.berlinclock.domain.model
 
+import com.berlinclock.constants.BOTTOM_MINUTE_LIGHT_COUNT
 import com.berlinclock.constants.LightColor
 import com.berlinclock.constants.TOP_MINUTE_LIGHT_COUNT
 import com.berlinclock.constants.TOP_MINUTE_LIGHT_VALUE
@@ -9,6 +10,11 @@ class BerlinClockMinuteState {
 
     val topMinuteLightState: List<LightColor>
         get() = _topMinuteLightState
+
+    private val _bottomMinuteLightState = MutableList(BOTTOM_MINUTE_LIGHT_COUNT) { LightColor.OFF }
+
+    val bottomMinuteLightState: List<LightColor>
+        get() = _bottomMinuteLightState
 
     fun updateMinuteLightState(minutes: Int) {
         val topMinuteOnLightCount = minutes / TOP_MINUTE_LIGHT_VALUE

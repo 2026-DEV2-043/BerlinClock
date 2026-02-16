@@ -79,4 +79,11 @@ class BerlinClockMinuteStateTest {
 
         Assert.assertEquals(3, topMinuteLightState.count { it == LightColor.RED })
     }
+
+    @Test
+    fun `check bottomMinuteLightState all bottom minute lights are initially Off`() {
+        val bottomMinuteLightState = berlinClockMinuteState.bottomMinuteLightState
+
+        Assert.assertEquals(true, bottomMinuteLightState.all {  it == LightColor.OFF })
+    }
 }
