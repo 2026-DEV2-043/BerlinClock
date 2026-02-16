@@ -48,7 +48,7 @@ class BerlinClockStateUseCaseTest {
 
         val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.houtState.topHourLightState.all{ it == LightColor.OFF})
+        Assert.assertEquals( true,  berlinClockState.hourState.topHourLightState.all{ it == LightColor.OFF})
     }
 
     @Test
@@ -60,7 +60,7 @@ class BerlinClockStateUseCaseTest {
 
         val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.houtState.topHourLightState.all{ it == LightColor.RED})
+        Assert.assertEquals( true,  berlinClockState.hourState.topHourLightState.all{ it == LightColor.RED})
     }
 
     @Test
@@ -72,7 +72,7 @@ class BerlinClockStateUseCaseTest {
 
         val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.houtState.topHourLightState.any { it == LightColor.RED })
+        Assert.assertEquals( true,  berlinClockState.hourState.topHourLightState.any { it == LightColor.RED })
     }
 
     @Test
@@ -84,7 +84,7 @@ class BerlinClockStateUseCaseTest {
 
         val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.houtState.bottomHourLightState.all{ it == LightColor.OFF})
+        Assert.assertEquals( true,  berlinClockState.hourState.bottomHourLightState.all{ it == LightColor.OFF})
     }
 
     @Test
@@ -96,7 +96,7 @@ class BerlinClockStateUseCaseTest {
 
         val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.houtState.bottomHourLightState.any{ it == LightColor.OFF })
+        Assert.assertEquals( true,  berlinClockState.hourState.bottomHourLightState.any{ it == LightColor.OFF })
     }
 
     @Test
