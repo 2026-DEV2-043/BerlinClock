@@ -21,6 +21,7 @@ class BerlinClockMinuteState {
         val topMinuteOnLightCount = minutes / TOP_MINUTE_LIGHT_VALUE
         (0..<topMinuteOnLightCount).forEach { index -> _topMinuteLightState[index]  = if ((index + 1) % 3 == 0) LightColor.RED else LightColor.YELLOW }
 
-        _bottomMinuteLightState.forEach { _ -> LightColor.OFF }
+        val bottomMinutesOnLightCount =  minutes % TOP_MINUTE_LIGHT_VALUE
+        (0..< bottomMinutesOnLightCount).forEach { index -> _bottomMinuteLightState[index] = LightColor.YELLOW }
     }
 }
