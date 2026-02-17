@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.berlinclock.constants.BOTTOM_MINUTE_LIGHT_COUNT
 import com.berlinclock.constants.HOUR_LIGHT_COUNT
+import com.berlinclock.constants.INITIAL_TIME
 import com.berlinclock.constants.LightColorUI
 import com.berlinclock.constants.TOP_MINUTE_LIGHT_COUNT
 import com.berlinclock.presentation.model.BerlinClockUIState
@@ -51,5 +52,22 @@ class BerlinClockScreenTest {
             BerlinClockScreen(berlinUIClockState)
         }
         composeTestRule.onNodeWithText("Berlin Clock").assertIsDisplayed()
+    }
+
+    @Test
+    fun testTimeTextVisibility_isNotVisible() {
+        val berlinUIClockState= BerlinClockUIState(
+            LightColorUI.OFF,
+            List(HOUR_LIGHT_COUNT) { LightColorUI.OFF },
+            List(HOUR_LIGHT_COUNT) { LightColorUI.OFF },
+            List(TOP_MINUTE_LIGHT_COUNT) { LightColorUI.OFF },
+            List(BOTTOM_MINUTE_LIGHT_COUNT) { LightColorUI.OFF },
+            ""
+        )
+
+        composeTestRule.setContent {
+            BerlinClockScreen(berlinUIClockState)
+        }
+        composeTestRule.onNodeWithText(INITIAL_TIME).assertIsNotDisplayed()
     }
 }
