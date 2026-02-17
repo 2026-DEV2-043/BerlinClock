@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BerlinClock</string>
+    <string name="screen_title">Berlin Clock</string>
 </resources>

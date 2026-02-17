@@ -1,5 +1,6 @@
 package com.berlinclock.presentation.screen
 
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -19,5 +20,13 @@ class BerlinClockScreenTest {
             BerlinClockScreen()
         }
         composeTestRule.onNodeWithText("Title").assertIsNotDisplayed()
+    }
+
+    @Test
+    fun testTitleVisibility_isVisible() {
+        composeTestRule.setContent {
+            BerlinClockScreen()
+        }
+        composeTestRule.onNodeWithText("Berlin Clock").assertIsDisplayed()
     }
 }
