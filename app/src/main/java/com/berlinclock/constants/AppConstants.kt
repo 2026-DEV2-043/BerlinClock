@@ -11,7 +11,11 @@ const val TIME_FORMAT = "HH:mm:ss"
 const val INITIAL_TIME = "00:00:00"
 
 //Tags Used In Testing
+const val TEST_SECOND_TAG = "TEST_SECOND_TAG"
 const val TEST_TOP_HOUR_TAG = "TEST_TOP_HOUR_TAG"
+const val TEST_BOTTOM_HOUR_TAG = "TEST_BOTTOM_HOUR_TAG"
+const val TEST_TOP_MINUTES_TAG = "TEST_TOP_MINUTES_TAG"
+const val TEST_BOTTOM_MINUTES_TAG = "TEST_BOTTOM_MINUTES_TAG"
 const val TEST_TAG_ON = "ON"
 const val TEST_TAG_OFF = "OFF"
 
