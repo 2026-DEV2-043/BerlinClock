@@ -10,3 +10,8 @@ const val BOTTOM_MINUTE_LIGHT_COUNT = 4
 const val TIME_FORMAT = "HH:mm:ss"
 const val INITIAL_TIME = "00:00:00"
 
+//Tags Used In Testing
+const val TEST_TOP_HOUR_TAG = "TEST_TOP_HOUR_TAG"
+const val TEST_TAG_ON = "ON"
+const val TEST_TAG_OFF = "OFF"
+
