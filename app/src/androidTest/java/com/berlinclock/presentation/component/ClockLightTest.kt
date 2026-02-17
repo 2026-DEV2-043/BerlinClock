@@ -6,6 +6,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.berlinclock.constants.LightColorUI
 import com.berlinclock.constants.TEST_TAG_OFF
+import com.berlinclock.constants.TEST_TAG_ON
 import com.berlinclock.constants.TEST_TOP_HOUR_TAG
 import org.junit.Rule
 import org.junit.Test
@@ -22,5 +23,13 @@ class ClockLightTest {
             ClockLight(TEST_TOP_HOUR_TAG, LightColorUI.OFF)
         }
         composeTestRule.onNodeWithTag(TEST_TAG_OFF).assertIsDisplayed()
+    }
+
+    @Test
+    fun test_ClockLight_isOn() {
+        composeTestRule.setContent {
+            ClockLight(TEST_TOP_HOUR_TAG, LightColorUI.YELLOW)
+        }
+        composeTestRule.onNodeWithTag(TEST_TAG_ON).assertIsDisplayed()
     }
 }
