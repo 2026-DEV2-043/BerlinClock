@@ -70,4 +70,20 @@ class BerlinClockScreenTest {
         }
         composeTestRule.onNodeWithText(INITIAL_TIME).assertIsNotDisplayed()
     }
+
+    @Test
+    fun testTimeTextVisibility_isVisible() {
+        val berlinUIClockState= BerlinClockUIState(
+            LightColorUI.OFF,
+            List(HOUR_LIGHT_COUNT) { LightColorUI.OFF },
+            List(HOUR_LIGHT_COUNT) { LightColorUI.OFF },
+            List(TOP_MINUTE_LIGHT_COUNT) { LightColorUI.OFF },
+            List(BOTTOM_MINUTE_LIGHT_COUNT) { LightColorUI.OFF },
+            INITIAL_TIME
+        )
+        composeTestRule.setContent {
+            BerlinClockScreen(berlinUIClockState)
+        }
+        composeTestRule.onNodeWithText(INITIAL_TIME).assertIsDisplayed()
+    }
 }
