@@ -1,5 +1,6 @@
 package com.berlinclock.domain.usecase
 
+import app.cash.turbine.test
 import com.berlinclock.constants.LightColor
 import com.berlinclock.constants.TOP_MINUTE_LIGHT_COUNT
 import com.berlinclock.domain.model.BerlinClockHourState
@@ -10,6 +11,7 @@ import com.berlinclock.domain.model.TimeComponent
 import com.berlinclock.domain.utils.TimeUtil
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -182,7 +184,7 @@ class BerlinClockStateUseCaseTest {
     }
 
     @Test
-    fun `test BerlinClockStateUseCase() for a time 23-59-59`() {
+    fun `test BerlinClockStateUseCase() for a time 23-59-59`() = runTest {
         val formattedTime = "23:59:59"
         val hours = 23
         val minutes = 59
@@ -207,13 +209,18 @@ class BerlinClockStateUseCaseTest {
         every { timeUtil.getFormattedTime() } returns formattedTime
         every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        val actualBerlinClockState = berlinClockStateUseCase()
-
-        Assert.assertEquals( actualBerlinClockState.time,  expectedBerlinClockState.time)
-        Assert.assertEquals( actualBerlinClockState.secondState.secondLightState,  expectedBerlinClockState.secondState.secondLightState)
-        Assert.assertEquals( actualBerlinClockState.hourState.topHourLightState,  expectedBerlinClockState.hourState.topHourLightState)
-        Assert.assertEquals( actualBerlinClockState.hourState.bottomHourLightState,  expectedBerlinClockState.hourState.bottomHourLightState)
-        Assert.assertEquals( actualBerlinClockState.minuteState.topMinuteLightState,  expectedBerlinClockState.minuteState.topMinuteLightState)
-        Assert.assertEquals( actualBerlinClockState.minuteState.bottomMinuteLightState,  expectedBerlinClockState.minuteState.bottomMinuteLightState)
+        berlinClockStateUseCase().test {
+            // When
+            repeat(3) {
+                val actualBerlinClockState = awaitItem()
+                Assert.assertEquals( actualBerlinClockState.time,  expectedBerlinClockState.time)
+                Assert.assertEquals( actualBerlinClockState.secondState.secondLightState,  expectedBerlinClockState.secondState.secondLightState)
+                Assert.assertEquals( actualBerlinClockState.hourState.topHourLightState,  expectedBerlinClockState.hourState.topHourLightState)
+                Assert.assertEquals( actualBerlinClockState.hourState.bottomHourLightState,  expectedBerlinClockState.hourState.bottomHourLightState)
+                Assert.assertEquals( actualBerlinClockState.minuteState.topMinuteLightState,  expectedBerlinClockState.minuteState.topMinuteLightState)
+                Assert.assertEquals( actualBerlinClockState.minuteState.bottomMinuteLightState,  expectedBerlinClockState.minuteState.bottomMinuteLightState)
+            }
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 }
