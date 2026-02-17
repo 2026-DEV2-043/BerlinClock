@@ -40,4 +40,7 @@ The clock is read from top to bottom, with rows representing different time unit
 ## Tech Stack
 
 - Kotlin
+- MVVM + Clean architecture + TDD
+- Material Design 3 components
+- Dagger Hilt - Dependency Injection
 - Unit tests - JUnit, MockK
