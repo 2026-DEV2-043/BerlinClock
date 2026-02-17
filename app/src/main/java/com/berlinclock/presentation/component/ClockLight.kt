@@ -29,7 +29,7 @@ fun ClockLight(
             modifier = Modifier
                 .padding(horizontal = 0.dp, vertical = 5.dp)
                 .fillMaxWidth()
-                .size(60.dp)
+                .size(50.dp)
                 .border(2.dp, Color.Black)
                 .background(light.color)
                 .semantics {
