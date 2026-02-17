@@ -10,5 +10,10 @@ import java.time.format.DateTimeFormatter
 class TimeUtil {
     fun getFormattedTime(): String = LocalTime.now().format(DateTimeFormatter.ofPattern(TIME_FORMAT))
 
-    fun getTimeComponent(): TimeComponent = TimeComponent(0, 0, 0)
+    fun getTimeComponent(): TimeComponent = with(LocalTime.now()) {
+        TimeComponent(
+            hour,
+            minute,
+            second)
+    }
 }

@@ -49,4 +49,20 @@ class TimeUtilTest {
         Assert.assertEquals(true, expectedMinute == actualTimeComponent.minute)
         Assert.assertEquals(true, expectedSecond == actualTimeComponent.second)
     }
+
+    @Test
+    fun `check getTimeComponent is giving expected TimeComponent for 23-59-59`() {
+        val expectedHour = 23
+        val expectedMinute = 59
+        val expectedSecond = 59
+
+        mockkStatic(LocalTime::class)
+        every { LocalTime.now() } returns LocalTime.of(23, 59, 59)
+
+        val actualTimeComponent = timeUtil.getTimeComponent()
+
+        Assert.assertEquals(true, expectedHour == actualTimeComponent.hour)
+        Assert.assertEquals(true, expectedMinute == actualTimeComponent.minute)
+        Assert.assertEquals(true, expectedSecond == actualTimeComponent.second)
+    }
 }
