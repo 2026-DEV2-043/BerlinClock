@@ -1,4 +1,4 @@
-package com.berlinclock.ui.theme
+package com.berlinclock.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
