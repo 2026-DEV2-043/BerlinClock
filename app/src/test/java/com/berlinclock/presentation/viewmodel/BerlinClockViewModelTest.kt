@@ -32,4 +32,9 @@ class BerlinClockViewModelTest {
     fun `check topMinuteLight are initially OFF`() {
         assertEquals(true, berlinClockViewModel.berlinClockState.value.topMinuteLight.all { it == LightColorUI.OFF })
     }
+
+    @Test
+    fun `check bottomMinuteLight are initially OFF`() {
+        assertEquals(true, berlinClockViewModel.berlinClockState.value.bottomMinuteLight.all { it == LightColorUI.OFF })
+    }
 }
