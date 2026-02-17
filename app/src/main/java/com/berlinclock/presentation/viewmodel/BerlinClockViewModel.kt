@@ -5,21 +5,22 @@ import androidx.lifecycle.viewModelScope
 import com.berlinclock.domain.usecase.BerlinClockStateUseCase
 import com.berlinclock.presentation.model.BerlinClockUIState
 import com.berlinclock.utility.toBerlinClockUIState
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 class BerlinClockViewModel @Inject constructor(val berlinClockStateUseCase: BerlinClockStateUseCase): ViewModel() {
-    private var _berlinClockState = MutableStateFlow(BerlinClockUIState())
-    val berlinClockState: StateFlow<BerlinClockUIState>
-        get() = _berlinClockState
-
-    init {
-        viewModelScope.launch {
-            berlinClockStateUseCase().collect {
-                _berlinClockState.tryEmit(it.toBerlinClockUIState())
+    val berlinClockState: StateFlow<BerlinClockUIState> by lazy {
+        flow {
+            berlinClockStateUseCase().collect  {
+                emit(it.toBerlinClockUIState())
             }
-        }
+        }.stateIn (
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
+            initialValue = BerlinClockUIState()
+        )
     }
 }
