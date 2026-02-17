@@ -48,3 +48,9 @@ The clock is read from top to bottom, with rows representing different time unit
 - Dagger Hilt - Dependency Injection, HiltNavigationCompose
 - Unit tests - JUnit, MockK
 - Instrumentation tests - Espresso
+
+## Screenshots
+
+| 23:59.12                                                           | 00:00:07                                                           | 00:01:10                                                           | 16:59:08                                                           |
+|--------------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------------------------------------|
+| <img src="screenshots/Screenshot_20260217_183520.png" width="200"> | <img src="screenshots/Screenshot_20260217_183922.png" width="200"> | <img src="screenshots/Screenshot_20260217_183756.png" width="200"> | <img src="screenshots/Screenshot_20260217_183839.png" width="200"> |
