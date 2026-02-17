@@ -40,3 +40,4 @@ The clock is read from top to bottom, with rows representing different time unit
 ## Tech Stack
 
 - Kotlin
+- Unit tests - JUnit, MockK
