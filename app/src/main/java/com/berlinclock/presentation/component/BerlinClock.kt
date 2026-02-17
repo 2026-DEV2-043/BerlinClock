@@ -36,6 +36,7 @@ import com.berlinclock.presentation.model.BerlinClockUIState
 @Composable
 fun BerlinClock(clockState: BerlinClockUIState) {
     Column(
+        modifier = Modifier.padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
