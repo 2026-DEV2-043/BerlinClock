@@ -21,7 +21,7 @@ class BerlinClockStateUseCase @Inject constructor(val timeUtil: TimeUtil) {
         }
     }
 
-    fun getBerlinClockState(formattedTime: String, hours: Int, minutes: Int, seconds: Int): BerlinClockState {
+    private fun getBerlinClockState(formattedTime: String, hours: Int, minutes: Int, seconds: Int): BerlinClockState {
 
         val berlinClockSecondState = BerlinClockSecondState()
         berlinClockSecondState.updateSecondLightState(seconds)

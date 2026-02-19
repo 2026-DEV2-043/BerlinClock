@@ -28,159 +28,237 @@ class BerlinClockStateUseCaseTest {
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with second light Off`() {
-        val formattedDate = "14:04:01"
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with second light Off`() = runTest {
+        val formattedTime = "14:04:01"
         val hours = 14
         val minutes = 4
         val seconds = 1
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedTime
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( LightColor.OFF,  berlinClockState.secondState.secondLightState)
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( LightColor.OFF,  actualBerlinClockState.secondState.secondLightState)
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with second light On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with second light On`() = runTest {
         val formattedDate = "14:04:02"
         val hours = 14
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( LightColor.YELLOW,  berlinClockState.secondState.secondLightState)
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( LightColor.YELLOW,  actualBerlinClockState.secondState.secondLightState)
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all top hour lights Off`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all top hour lights Off`() = runTest {
         val formattedDate = "04:04:02"
         val hours = 4
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.hourState.topHourLightState.all{ it == LightColor.OFF})
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.hourState.topHourLightState.all{ it == LightColor.OFF})
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all top hour lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all top hour lights On`() = runTest {
         val formattedDate = "21:04:02"
         val hours = 21
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.hourState.topHourLightState.all{ it == LightColor.RED})
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.hourState.topHourLightState.all{ it == LightColor.RED})
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with some top hour lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with some top hour lights On`() = runTest {
         val formattedDate = "15:04:02"
         val hours = 15
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.hourState.topHourLightState.any { it == LightColor.RED })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.hourState.topHourLightState.any { it == LightColor.RED })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all bottom hour lights Off`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all bottom hour lights Off`() = runTest {
         val formattedDate = "20:04:02"
         val hours = 20
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.hourState.bottomHourLightState.all{ it == LightColor.OFF})
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.hourState.bottomHourLightState.all{ it == LightColor.OFF})
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with some bottom hour lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with some bottom hour lights On`() = runTest {
         val formattedDate = "16:04:02"
         val hours = 16
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.hourState.bottomHourLightState.any{ it == LightColor.OFF })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.hourState.bottomHourLightState.any{ it == LightColor.OFF })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all top minute lights Off`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all top minute lights Off`() = runTest {
         val formattedDate = "15:04:02"
         val hours = 15
         val minutes = 4
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.minuteState.topMinuteLightState.all{ it == LightColor.OFF })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.minuteState.topMinuteLightState.all{ it == LightColor.OFF })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all top minute lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all top minute lights On`() = runTest {
         val formattedDate = "15:55:02"
         val hours = 15
         val minutes = 55
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals(TOP_MINUTE_LIGHT_COUNT,  berlinClockState.minuteState.topMinuteLightState.count { it != LightColor.OFF })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals(TOP_MINUTE_LIGHT_COUNT,  actualBerlinClockState.minuteState.topMinuteLightState.count { it != LightColor.OFF })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with some top minute lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with some top minute lights On`() = runTest {
         val formattedDate = "15:30:02"
         val hours = 15
         val minutes = 30
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.minuteState.topMinuteLightState.any { it != LightColor.OFF })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.minuteState.topMinuteLightState.any { it != LightColor.OFF })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all bottom minute lights Off`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all bottom minute lights Off`() = runTest {
         val formattedDate = "15:55:02"
         val hours = 15
         val minutes = 55
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.minuteState.bottomMinuteLightState.all{ it == LightColor.OFF })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.minuteState.bottomMinuteLightState.all{ it == LightColor.OFF })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with all bottom minute lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with all bottom minute lights On`() = runTest {
         val formattedDate = "15:55:02"
         val hours = 15
         val minutes = 59
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals(true,  berlinClockState.minuteState.bottomMinuteLightState.all { it == LightColor.YELLOW })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals(true,  actualBerlinClockState.minuteState.bottomMinuteLightState.all { it == LightColor.YELLOW })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
-    fun `check getBerlinClockState() for a given formatted time and return BerlinClockState with some bottom minute lights On`() {
+    fun `check BerlinClockStateUseCase() for a system given formatted time and return BerlinClockState flow with some bottom minute lights On`() = runTest {
         val formattedDate = "16:56:02"
         val hours = 16
         val minutes = 56
         val seconds = 2
 
-        val berlinClockState = berlinClockStateUseCase.getBerlinClockState(formattedDate, hours, minutes, seconds)
+        every { timeUtil.getFormattedTime() } returns formattedDate
+        every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
-        Assert.assertEquals( true,  berlinClockState.minuteState.bottomMinuteLightState.any { it == LightColor.YELLOW })
+        berlinClockStateUseCase().test {
+            val actualBerlinClockState = awaitItem()
+            Assert.assertEquals( true,  actualBerlinClockState.minuteState.bottomMinuteLightState.any { it == LightColor.YELLOW })
+
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
@@ -210,7 +288,6 @@ class BerlinClockStateUseCaseTest {
         every { timeUtil.getTimeComponent() } returns TimeComponent(hours, minutes, seconds)
 
         berlinClockStateUseCase().test {
-            // When
             repeat(3) {
                 val actualBerlinClockState = awaitItem()
                 Assert.assertEquals( actualBerlinClockState.time,  expectedBerlinClockState.time)
